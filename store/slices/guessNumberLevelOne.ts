@@ -41,5 +41,5 @@ export const { startGame, addUserGuess, resetGame } = gameSlice.actions;
 export default gameSlice.reducer;
 
 function generateRandomNumbers(): number[] {
-  return Array.from({ length: 5 }, () => Math.floor(Math.random() * 100));
+  return Array.from({ length: 5 }, () => Math.floor(Math.random() * 11));
 }

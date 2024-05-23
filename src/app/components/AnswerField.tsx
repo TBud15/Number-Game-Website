@@ -4,11 +4,11 @@ import React from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { addUserGuess } from "../../../store/slices/gameSlice";
+import { addUserGuess } from "../../../store/slices/guessNumberLevelOne";
 
 const AnswerField: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { correctSum } = useAppSelector((state) => state.game);
+  const { correctSum, userGuess } = useAppSelector((state) => state.game);
 
   const formik = useFormik({
     initialValues: {
@@ -20,11 +20,6 @@ const AnswerField: React.FC = () => {
     onSubmit: (values) => {
       const userGuess = Number(values.guess);
       dispatch(addUserGuess(userGuess));
-      alert(
-        `Your guess is: ${userGuess}. The correct sum is: ${correctSum}. ${
-          userGuess === correctSum ? "You are correct!" : "Try again!"
-        }`
-      );
     },
   });
 
@@ -46,6 +41,15 @@ const AnswerField: React.FC = () => {
       >
         Submit
       </button>
+      {userGuess !== null && (
+        <div>
+          {userGuess === correctSum ? (
+            <div>Correct. {correctSum}</div>
+          ) : (
+            <div>Incorrect, the correct sum is {correctSum}</div>
+          )}
+        </div>
+      )}
     </form>
   );
 };
