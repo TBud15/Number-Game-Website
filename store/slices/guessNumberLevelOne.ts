@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface GameState {
   numbers: number[];
   isGameActive: boolean;
+  gameButtonClicked: boolean;
   userGuess: number | null;
   correctSum: number;
 }
@@ -10,6 +11,7 @@ interface GameState {
 const initialState: GameState = {
   numbers: [],
   isGameActive: false,
+  gameButtonClicked: false,
   userGuess: null,
   correctSum: 0,
 };
@@ -20,6 +22,7 @@ const gameSlice = createSlice({
   reducers: {
     startGame(state) {
       state.isGameActive = true;
+      state.gameButtonClicked = true;
       const numbers = generateRandomNumbers();
       state.numbers = numbers;
       state.correctSum = numbers.reduce((sum, num) => sum + num, 0);
@@ -30,6 +33,7 @@ const gameSlice = createSlice({
     },
     resetGame(state) {
       state.isGameActive = false;
+      state.gameButtonClicked = false;
       state.numbers = [];
       state.userGuess = null;
       state.correctSum = 0;
@@ -41,5 +45,5 @@ export const { startGame, addUserGuess, resetGame } = gameSlice.actions;
 export default gameSlice.reducer;
 
 function generateRandomNumbers(): number[] {
-  return Array.from({ length: 5 }, () => Math.floor(Math.random() * 11));
+  return Array.from({ length: 5 }, () => Math.floor(Math.random() * 9) + 1);
 }

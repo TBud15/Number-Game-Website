@@ -15,7 +15,7 @@ const AnswerField: React.FC = () => {
       guess: "",
     },
     validationSchema: Yup.object({
-      guess: Yup.number().required("Required"),
+      guess: Yup.number().required("Required").typeError("Must be a number"),
     }),
     onSubmit: (values) => {
       const userGuess = Number(values.guess);
@@ -24,29 +24,37 @@ const AnswerField: React.FC = () => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit} className="space-y-4">
+    <form
+      onSubmit={formik.handleSubmit}
+      className="space-y-4 max-w-md mx-auto mt-8"
+    >
       <input
         name="guess"
         type="text"
         onChange={formik.handleChange}
         value={formik.values.guess}
-        className="px-3 py-2 border rounded w-full"
+        className="px-3 py-2 border rounded-md w-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
+        placeholder="Enter your guess"
       />
-      {formik.errors.guess ? (
-        <div className="text-red-500">{formik.errors.guess}</div>
-      ) : null}
+      {formik.errors.guess && (
+        <div className="text-red-500 text-sm">{formik.errors.guess}</div>
+      )}
       <button
         type="submit"
-        className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700"
+        className="w-full py-2 bg-green-600 text-white rounded-md shadow-md hover:bg-green-800 transition duration-200"
       >
         Submit
       </button>
       {userGuess !== null && (
-        <div>
+        <div className="text-center mt-4">
           {userGuess === correctSum ? (
-            <div>Correct. {correctSum}</div>
+            <div className="text-green-600 font-bold text-lg">
+              Correct! The sum is {correctSum}.
+            </div>
           ) : (
-            <div>Incorrect, the correct sum is {correctSum}</div>
+            <div className="text-red-600 font-bold text-lg">
+              Incorrect, the correct sum is {correctSum}.
+            </div>
           )}
         </div>
       )}
