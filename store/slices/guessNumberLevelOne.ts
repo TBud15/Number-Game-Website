@@ -6,6 +6,7 @@ interface GameState {
   gameButtonClicked: boolean;
   userGuess: number | null;
   correctSum: number;
+  timer: number;
 }
 
 const initialState: GameState = {
@@ -14,6 +15,7 @@ const initialState: GameState = {
   gameButtonClicked: false,
   userGuess: null,
   correctSum: 0,
+  timer: 2000, //displayed in milliseconds
 };
 
 const gameSlice = createSlice({
@@ -38,10 +40,14 @@ const gameSlice = createSlice({
       state.userGuess = null;
       state.correctSum = 0;
     },
+    setTimer: (state, action) => {
+      state.timer = action.payload;
+    },
   },
 });
 
-export const { startGame, addUserGuess, resetGame } = gameSlice.actions;
+export const { startGame, addUserGuess, resetGame, setTimer } =
+  gameSlice.actions;
 export default gameSlice.reducer;
 
 function generateRandomNumbers(): number[] {
