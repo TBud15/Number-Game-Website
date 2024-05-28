@@ -9,6 +9,7 @@ interface GameState {
   timer: number;
   arrayLength: number;
   numberRange: number;
+  allDisplayed: boolean;
 }
 
 const initialState: GameState = {
@@ -17,9 +18,10 @@ const initialState: GameState = {
   gameButtonClicked: false,
   userGuess: null,
   correctSum: 0,
-  timer: 2000, //displayed in milliseconds
-  arrayLength: 5, //array length
-  numberRange: 9, //default number range 1-9 | 1-99 etc
+  timer: 2000, // displayed in milliseconds
+  arrayLength: 5, // array length
+  numberRange: 9, // default number range. 9 is 1-9, 99 is 1-9 etc
+  allDisplayed: false, // all numbers are displayed or no
 };
 
 const gameSlice = createSlice({
@@ -56,6 +58,9 @@ const gameSlice = createSlice({
     setNumberRange: (state, action: PayloadAction<number>) => {
       state.numberRange = action.payload;
     },
+    setAllDisplayed: (state, action: PayloadAction<boolean>) => {
+      state.allDisplayed = action.payload;
+    },
   },
 });
 
@@ -66,6 +71,7 @@ export const {
   setTimer,
   setArrayLength,
   setNumberRange,
+  setAllDisplayed,
 } = gameSlice.actions;
 export default gameSlice.reducer;
 
