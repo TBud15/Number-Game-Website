@@ -7,6 +7,8 @@ interface GameState {
   userGuess: number | null;
   correctSum: number;
   timer: number;
+  arrayLength: number;
+  numberRange: number;
 }
 
 const initialState: GameState = {
@@ -16,6 +18,8 @@ const initialState: GameState = {
   userGuess: null,
   correctSum: 0,
   timer: 2000, //displayed in milliseconds
+  arrayLength: 5, //array length
+  numberRange: 9, //default number range 1-9 | 1-99 etc
 };
 
 const gameSlice = createSlice({
@@ -25,7 +29,10 @@ const gameSlice = createSlice({
     startGame(state) {
       state.isGameActive = true;
       state.gameButtonClicked = true;
-      const numbers = generateRandomNumbers();
+      const numbers = generateRandomNumbers(
+        state.arrayLength,
+        state.numberRange
+      );
       state.numbers = numbers;
       state.correctSum = numbers.reduce((sum, num) => sum + num, 0);
       state.userGuess = null;
@@ -40,16 +47,34 @@ const gameSlice = createSlice({
       state.userGuess = null;
       state.correctSum = 0;
     },
-    setTimer: (state, action) => {
+    setTimer: (state, action: PayloadAction<number>) => {
       state.timer = action.payload;
+    },
+    setArrayLength: (state, action: PayloadAction<number>) => {
+      state.arrayLength = action.payload;
+    },
+    setNumberRange: (state, action: PayloadAction<number>) => {
+      state.numberRange = action.payload;
     },
   },
 });
 
-export const { startGame, addUserGuess, resetGame, setTimer } =
-  gameSlice.actions;
+export const {
+  startGame,
+  addUserGuess,
+  resetGame,
+  setTimer,
+  setArrayLength,
+  setNumberRange,
+} = gameSlice.actions;
 export default gameSlice.reducer;
 
-function generateRandomNumbers(): number[] {
-  return Array.from({ length: 5 }, () => Math.floor(Math.random() * 9) + 1);
+function generateRandomNumbers(
+  arrayLength: number,
+  numberRange: number
+): number[] {
+  return Array.from(
+    { length: arrayLength },
+    () => Math.floor(Math.random() * numberRange) + 1
+  );
 }
