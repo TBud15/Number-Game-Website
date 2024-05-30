@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import {
   resetGame,
@@ -10,9 +10,18 @@ import {
 const StartButton: React.FC = () => {
   const dispatch = useAppDispatch();
   const isGameStarted = useAppSelector((state) => state.game.gameButtonClicked);
+  const lastVisited = useAppSelector((state) => state.game.lastVisit);
+  const [clientSideLastVisit, setClientSideLastVisit] = useState<string>("");
+
+  useEffect(() => {
+    //set client-side last visit to avoid hydration issues
+    if (lastVisited) {
+      setClientSideLastVisit(new Date(lastVisited).toLocaleString());
+    }
+  }, [lastVisited]);
 
   return (
-    <div className="flex justify-center my-4">
+    <div className="flex flex-col items-center my-4">
       {!isGameStarted ? (
         <button
           className="px-6 py-3 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-800 transition duration-200"

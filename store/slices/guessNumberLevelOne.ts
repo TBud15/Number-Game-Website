@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { loadLastVisit, saveLastVisit } from "../../utils/localStorage";
 
 interface GameState {
   numbers: number[];
@@ -10,6 +11,7 @@ interface GameState {
   arrayLength: number;
   numberRange: number;
   allDisplayed: boolean;
+  lastVisit: Date | null;
 }
 
 const initialState: GameState = {
@@ -22,6 +24,7 @@ const initialState: GameState = {
   arrayLength: 5, // array length
   numberRange: 9, // default number range. 9 is 1-9, 99 is 1-9 etc
   allDisplayed: false, // all numbers are displayed or no
+  lastVisit: loadLastVisit(),
 };
 
 const gameSlice = createSlice({
@@ -38,6 +41,7 @@ const gameSlice = createSlice({
       state.numbers = numbers;
       state.correctSum = numbers.reduce((sum, num) => sum + num, 0);
       state.userGuess = null;
+      saveLastVisit();
     },
     addUserGuess(state, action: PayloadAction<number>) {
       state.userGuess = action.payload;
