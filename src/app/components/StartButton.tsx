@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import {
   resetGame,
@@ -37,6 +38,9 @@ const StartButton: React.FC = () => {
           Reset Game
         </button>
       )}
+      <Link href="game/statistics" className="mt-6">
+        <p>Go to your statistics</p>
+      </Link>
     </div>
   );
 };

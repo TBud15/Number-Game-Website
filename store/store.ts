@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import gameLevelOne from "./slices/guessNumberLevelOne";
-import anotherGameModeReducer from "./slices/anotherGameModeSlice";
+import UserGameStatistics from "./slices/UserGameStatistics";
 
 const store = configureStore({
   reducer: {
     game: gameLevelOne,
-    anotherGameMode: anotherGameModeReducer,
+    UserGameStatistics: UserGameStatistics,
   },
 });
 

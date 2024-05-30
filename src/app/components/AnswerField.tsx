@@ -1,10 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { addUserGuess } from "../../../store/slices/guessNumberLevelOne";
+import { increaseCorrectAnswers } from "../../../utils/localStorage";
 
 const AnswerField: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -25,6 +26,12 @@ const AnswerField: React.FC = () => {
     onSubmit: (values) => {
       const userGuess = Number(values.guess);
       dispatch(addUserGuess(userGuess));
+
+      if (userGuess === correctSum) {
+        increaseCorrectAnswers(); // Increment correct answers if the guess is correct
+      }
+
+      //continue if incorrect, then insert incorrect
     },
   });
 

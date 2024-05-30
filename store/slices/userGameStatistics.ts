@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface AnotherGameModeState {
+interface UserGameStatistics {
   someProperty: string;
   someValue: number;
 }
 
-const initialState: AnotherGameModeState = {
+const initialState: UserGameStatistics = {
   someProperty: "",
   someValue: 0,
 };
