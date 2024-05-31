@@ -5,7 +5,8 @@ import { useAppSelector } from "../../../store/hooks";
 import {
   getTotalGamesPlayed,
   getCorrectAnswers,
-} from "../../../utils/localStorage";
+  getIncorrectAnswers,
+} from "../../../utils/statisticsLocalStorage";
 
 const Statistics: React.FC = () => {
   const lastVisited = useAppSelector((state) => state.game.lastVisit);
@@ -15,6 +16,20 @@ const Statistics: React.FC = () => {
     useState<any>(""); //total games played
 
   const [correctAnswers, setCorrectAnswers] = useState<any>(""); //Correct answers
+  const [incorrectAnswers, setIncorrectAnswers] = useState<any>(""); //Incorrect answers
+  const [winRate, setWinRate] = useState<any>(""); //winrate
+
+  const [lastPlayedTimer, setLastPlayedTimer] = useState<any>("");
+
+  //local winrate calculation
+  function calculateWinRate(totalWins: any, totalLosses: any) {
+    if (totalWins + totalLosses === 0) {
+      return 0; //to avoid division by zero
+    }
+
+    let winRate = (totalWins / (totalWins + totalLosses)) * 100;
+    return winRate.toFixed(2); //returns win rate rounded to 2 decimal places
+  }
 
   useEffect(() => {
     //Last visited
@@ -30,8 +45,17 @@ const Statistics: React.FC = () => {
 
     if (typeof window !== "undefined") {
       const totalCorrectGames = getCorrectAnswers();
+      const totalIncorrectGames = getIncorrectAnswers();
 
       setCorrectAnswers(totalCorrectGames);
+      setIncorrectAnswers(totalIncorrectGames);
+
+      //WinRate
+      const calculatedWinRate = calculateWinRate(
+        totalCorrectGames,
+        totalIncorrectGames
+      );
+      setWinRate(calculatedWinRate);
     }
   }, []);
 
@@ -51,23 +75,11 @@ const Statistics: React.FC = () => {
         </div>
         <div className="flex justify-between">
           <span>Incorrect Answers:</span>
-          <span>10</span>
+          <span>{incorrectAnswers}</span>
         </div>
         <div className="flex justify-between">
           <span>Win Rate:</span>
-          <span>60%</span>
-        </div>
-        <div className="flex justify-between">
-          <span>Last played mode:</span>
-          <span>1 to 9</span>
-        </div>
-        <div className="flex justify-between">
-          <span>Last played timer:</span>
-          <span>1 second</span>
-        </div>
-        <div className="flex justify-between">
-          <span>Last played array length:</span>
-          <span>5</span>
+          {winRate && <span>{winRate} %</span>}
         </div>
         <div className="flex justify-between">
           <span>Last visited:</span>

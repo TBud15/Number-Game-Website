@@ -11,15 +11,6 @@ import {
 const StartButton: React.FC = () => {
   const dispatch = useAppDispatch();
   const isGameStarted = useAppSelector((state) => state.game.gameButtonClicked);
-  const lastVisited = useAppSelector((state) => state.game.lastVisit);
-  const [clientSideLastVisit, setClientSideLastVisit] = useState<string>("");
-
-  useEffect(() => {
-    //set client-side last visit to avoid hydration issues
-    if (lastVisited) {
-      setClientSideLastVisit(new Date(lastVisited).toLocaleString());
-    }
-  }, [lastVisited]);
 
   return (
     <div className="flex flex-col items-center my-4">

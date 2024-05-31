@@ -65,3 +65,29 @@ export const getCorrectAnswers = () => {
     console.log(err);
   }
 };
+
+//Increase incorrect answers
+export const increaseIncorrectAnswers = () => {
+  try {
+    const incorrectAnswersNow = localStorage.getItem("incorrectAnswers");
+
+    const newIncorrectAnswers = incorrectAnswersNow
+      ? parseInt(incorrectAnswersNow, 10) + 1
+      : 1;
+
+    localStorage.setItem("incorrectAnswers", newIncorrectAnswers.toString());
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Incorrect answers GET
+export const getIncorrectAnswers = () => {
+  try {
+    const incorrectAnswers = localStorage.getItem("incorrectAnswers");
+
+    return incorrectAnswers ? parseInt(incorrectAnswers, 10) : 0;
+  } catch (err) {
+    console.log(err);
+  }
+};

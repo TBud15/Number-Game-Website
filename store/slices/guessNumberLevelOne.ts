@@ -3,8 +3,8 @@ import {
   getTotalGamesPlayed,
   loadLastVisit,
   saveLastVisit,
-} from "../../utils/localStorage";
-import { increaseTotalGamesPlayed } from "../../utils/localStorage";
+} from "../../utils/statisticsLocalStorage";
+import { increaseTotalGamesPlayed } from "../../utils/statisticsLocalStorage";
 
 interface GameState {
   numbers: number[];
