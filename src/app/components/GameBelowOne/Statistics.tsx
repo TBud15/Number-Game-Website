@@ -1,15 +1,15 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useAppSelector } from "../../../store/hooks";
+import { useAppSelector } from "../../../../store/hooks";
 import {
   getTotalGamesPlayed,
   getCorrectAnswers,
   getIncorrectAnswers,
-} from "../../../utils/statisticsLocalStorage";
+} from "../../../../utils/statisticsLocalStorage";
 
 const Statistics: React.FC = () => {
-  const lastVisited = useAppSelector((state) => state.game.lastVisit);
+  const lastVisited = useAppSelector((state) => state.gameBelowOne.lastVisit);
   const [clientSideLastVisit, setClientSideLastVisit] = useState<string>(""); //last visit
 
   const [clientSideTotalGamesPlayed, setClientSideTotalGamesPlayed] =

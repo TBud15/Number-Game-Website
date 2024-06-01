@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import gameLevelOne from "./slices/guessNumberLevelOne";
-import userGameStatistics from "./slices/userGameStatistics";
+import gameOverOne from "./slices/guessNumberSumOverOne";
+import gameBelowOne from "./slices/guessNumberSumBelowOne";
 
 const store = configureStore({
   reducer: {
-    game: gameLevelOne,
-    userGameStatistics: userGameStatistics,
+    gameOverOne: gameOverOne,
+    gameBelowOne: gameBelowOne,
   },
 });
 

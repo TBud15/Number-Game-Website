@@ -2,15 +2,17 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import {
   resetGame,
   startGame,
-} from "../../../store/slices/guessNumberLevelOne";
+} from "../../../../store/slices/guessNumberSumBelowOne";
 
 const StartButton: React.FC = () => {
   const dispatch = useAppDispatch();
-  const isGameStarted = useAppSelector((state) => state.game.gameButtonClicked);
+  const isGameStarted = useAppSelector(
+    (state) => state.gameBelowOne.gameButtonClicked
+  );
 
   return (
     <div className="flex flex-col items-center my-4">
@@ -29,7 +31,7 @@ const StartButton: React.FC = () => {
           Reset Game
         </button>
       )}
-      <Link href="game/statistics" className="mt-6">
+      <Link href="game-over-one/statistics" className="mt-6">
         <p>Go to your statistics</p>
       </Link>
     </div>

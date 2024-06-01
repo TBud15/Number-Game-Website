@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
-  getTotalGamesPlayed,
   loadLastVisit,
   saveLastVisit,
 } from "../../utils/statisticsLocalStorage";
@@ -27,13 +26,13 @@ const initialState: GameState = {
   correctSum: 0,
   timer: 2000, // displayed in milliseconds
   arrayLength: 5, // array length
-  numberRange: 9, // default number range. 9 is 1-9, 99 is 1-99 etc
+  numberRange: 9, // default number range. 9 is -9 to 9 excluding 0, 99 is -99 to 99 excluding 0, etc
   allDisplayed: false, // all numbers are displayed or no
   lastVisit: loadLastVisit(),
 };
 
 const gameSlice = createSlice({
-  name: "game",
+  name: "gameBelowOne",
   initialState,
   reducers: {
     startGame(state) {
@@ -46,6 +45,14 @@ const gameSlice = createSlice({
       state.numbers = numbers;
       state.correctSum = numbers.reduce((sum, num) => sum + num, 0);
       state.userGuess = null;
+
+      // Log the numbers array and check for negative numbers
+      console.log("Generated numbers array: ", numbers);
+      console.log(
+        "Includes negative numbers: ",
+        numbers.some((num) => num < 0)
+      );
+
       saveLastVisit(); //lastVisit local storage
       increaseTotalGamesPlayed(); //total games played local storage
     },
@@ -85,12 +92,16 @@ export const {
 } = gameSlice.actions;
 export default gameSlice.reducer;
 
-function generateRandomNumbers(
+const generateRandomNumbers = (
   arrayLength: number,
   numberRange: number
-): number[] {
-  return Array.from(
-    { length: arrayLength },
-    () => Math.floor(Math.random() * numberRange) + 1
-  );
-}
+): number[] => {
+  let range = Math.abs(numberRange);
+  return Array.from({ length: arrayLength }, () => {
+    let num;
+    do {
+      num = Math.floor(Math.random() * (range * 2 + 1)) - range;
+    } while (num === 0);
+    return num;
+  });
+};

@@ -1,24 +1,28 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { addUserGuess } from "../../../store/slices/guessNumberLevelOne";
+import { addUserGuess } from "../../../../store/slices/guessNumberSumOverOne";
 import {
   increaseCorrectAnswers,
   increaseIncorrectAnswers,
-} from "../../../utils/statisticsLocalStorage";
+} from "../../../../utils/statisticsLocalStorage";
 
 const AnswerField: React.FC = () => {
   const dispatch = useAppDispatch();
-  const isGameActive = useAppSelector((state) => state.game.isGameActive);
-  const isAllNumbersDisplayed = useAppSelector(
-    (state) => state.game.allDisplayed
+  const isGameActive = useAppSelector(
+    (state) => state.gameOverOne.isGameActive
   );
-  const timerSelected = useAppSelector((state) => state.game.timer);
+  const isAllNumbersDisplayed = useAppSelector(
+    (state) => state.gameOverOne.allDisplayed
+  );
+  const timerSelected = useAppSelector((state) => state.gameOverOne.timer);
 
-  const { correctSum, userGuess } = useAppSelector((state) => state.game);
+  const { correctSum, userGuess } = useAppSelector(
+    (state) => state.gameOverOne
+  );
 
   const formik = useFormik({
     initialValues: {

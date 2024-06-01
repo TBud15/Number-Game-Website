@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useAppSelector, useAppDispatch } from "../../../store/hooks";
+import { useAppSelector, useAppDispatch } from "../../../../store/hooks";
 import { motion } from "framer-motion";
 import { Formik, Field, Form } from "formik";
 import {
@@ -9,16 +9,22 @@ import {
   setArrayLength,
   setNumberRange,
   setAllDisplayed as setAllNumbersWereDisplayed,
-} from "../../../store/slices/guessNumberLevelOne";
+} from "../../../../store/slices/guessNumberSumOverOne";
 
 const DisplayNumbers: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const numbers = useAppSelector((state) => state.game.numbers);
-  const timerDuration = useAppSelector((state) => state.game.timer);
-  const arrayLengthState = useAppSelector((state) => state.game.arrayLength);
-  const numberRangeState = useAppSelector((state) => state.game.numberRange);
-  const isGameActive = useAppSelector((state) => state.game.isGameActive);
+  const numbers = useAppSelector((state) => state.gameOverOne.numbers);
+  const timerDuration = useAppSelector((state) => state.gameOverOne.timer);
+  const arrayLengthState = useAppSelector(
+    (state) => state.gameOverOne.arrayLength
+  );
+  const numberRangeState = useAppSelector(
+    (state) => state.gameOverOne.numberRange
+  );
+  const isGameActive = useAppSelector(
+    (state) => state.gameOverOne.isGameActive
+  );
 
   const [currentNumberIndex, setCurrentNumberIndex] = useState(0);
   const [visible, setVisible] = useState(false);
