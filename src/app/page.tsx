@@ -1,9 +1,9 @@
-import Image from "next/image";
+import LandingPage from "./components/LandingPage/LandingPage";
 
 export default function Home() {
   return (
-    <main className="text-center mt-5">
-      <p>Hi</p>
+    <main>
+      <LandingPage />
     </main>
   );
 }

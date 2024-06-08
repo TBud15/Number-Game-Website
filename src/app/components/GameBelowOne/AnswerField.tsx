@@ -55,7 +55,7 @@ const AnswerField: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col items-center min-h-screen bg-gray-100 mt-6"
+          className="flex flex-col items-center min-h-screen mt-6"
         >
           <form
             onSubmit={formik.handleSubmit}
