@@ -24,7 +24,7 @@ const initialState: GameState = {
   gameButtonClicked: false,
   userGuess: null,
   correctSum: 0,
-  timer: 2000, // displayed in milliseconds
+  timer: 1000, // displayed in milliseconds
   arrayLength: 5, // array length
   numberRange: 9, // default number range. 9 is 1-9, 99 is 1-99 etc
   allDisplayed: false, // all numbers are displayed or no

@@ -91,3 +91,14 @@ export const getIncorrectAnswers = () => {
     console.log(err);
   }
 };
+
+//Reset all statistics
+export const ResetLocalStorageStatistics = () => {
+  try {
+    localStorage.setItem("incorrectAnswers", "0");
+    localStorage.setItem("correctAnswers", "0");
+    localStorage.setItem("totalGamesPlayed", "0");
+  } catch (err) {
+    console.log(err);
+  }
+};

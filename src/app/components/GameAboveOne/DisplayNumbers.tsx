@@ -99,8 +99,10 @@ const DisplayNumbers: React.FC = () => {
                     <option value="300">300 milliseconds</option>
                     <option value="500">500 milliseconds</option>
                     <option value="800">800 milliseconds</option>
-                    <option value="1000">1 second</option>
-                    <option value="2000">2 seconds (default)</option>
+                    <option value="1000">1 second (default)</option>
+                    <option value="1500">1.5 seconds </option>
+                    <option value="1800">1.8 seconds </option>
+                    <option value="2000">2 seconds</option>
                     <option value="3000">3 seconds</option>
                   </Field>
                 </Form>
@@ -109,7 +111,9 @@ const DisplayNumbers: React.FC = () => {
           </div>
 
           <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-xs">
-            <h1 className="text-lg font-semibold mb-4">Set array length</h1>
+            <h1 className="text-lg font-semibold mb-4">
+              How many numbers to show
+            </h1>
             <Formik
               initialValues={{ arrayLength: arrayLengthState }}
               onSubmit={(values) => {

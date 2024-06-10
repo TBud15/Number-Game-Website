@@ -5,14 +5,14 @@ import { motion } from "framer-motion";
 
 const AnimatedNumbers = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen p-4 bg-gradient-to-r from-blue-400 to-purple-500">
+    <div className="flex flex-col items-center justify-center p-4 mb-20">
       <motion.h1
-        className="text-6xl font-bold mb-8 text-center text-white"
+        className="text-6xl font-bold mb-8 text-center text-white pt-20"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        Fast Summing Numbers
+        Speed Math
       </motion.h1>
       <motion.p
         className="text-2xl text-gray-200 mb-8 text-center max-w-xl"
@@ -20,8 +20,8 @@ const AnimatedNumbers = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
       >
-        Enhance your mental math skills with our fun and engaging exercises.
-        Improve your speed and accuracy with daily practice.
+        Enhance your mental math skills with our simple exercise. Improve your
+        speed and accuracy with daily practice.
       </motion.p>
       <motion.div
         className="flex flex-wrap justify-center gap-4 mb-12"
@@ -52,15 +52,6 @@ const AnimatedNumbers = () => {
           </motion.div>
         ))}
       </motion.div>
-      <motion.a
-        href="#game-modes"
-        className="bg-white text-blue-500 px-8 py-4 rounded-full shadow-lg hover:bg-gray-200 focus:outline-none"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, delay: 1 }}
-      >
-        Learn More
-      </motion.a>
     </div>
   );
 };

@@ -6,6 +6,7 @@ import {
   getTotalGamesPlayed,
   getCorrectAnswers,
   getIncorrectAnswers,
+  ResetLocalStorageStatistics,
 } from "../../../../utils/statisticsLocalStorage";
 
 const Statistics: React.FC = () => {
@@ -30,6 +31,14 @@ const Statistics: React.FC = () => {
     let winRate = (totalWins / (totalWins + totalLosses)) * 100;
     return winRate.toFixed(2); //returns win rate rounded to 2 decimal places
   }
+
+  //reset all statistics
+  const resetStatistics = () => {
+    ResetLocalStorageStatistics();
+    setCorrectAnswers(0);
+    setIncorrectAnswers(0);
+    setClientSideTotalGamesPlayed(0);
+  };
 
   useEffect(() => {
     //Last visited
@@ -57,7 +66,7 @@ const Statistics: React.FC = () => {
       );
       setWinRate(calculatedWinRate);
     }
-  }, []);
+  }, [lastVisited]);
 
   return (
     <div className="p-8 bg-white shadow-md rounded-lg max-w-md mx-auto">
@@ -86,6 +95,12 @@ const Statistics: React.FC = () => {
           <span>{clientSideLastVisit ? clientSideLastVisit : ""}</span>
         </div>
       </div>
+      <button
+        className="bg-blue-500 text-white font-semibold px-4 py-2 rounded-full hover:bg-blue-400 transition duration-300 ease-in-out mt-10"
+        onClick={resetStatistics}
+      >
+        Reset all statistics
+      </button>
     </div>
   );
 };
