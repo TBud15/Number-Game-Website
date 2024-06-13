@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -24,6 +24,9 @@ const AnswerField: React.FC = () => {
     (state) => state.gameBelowOne
   );
 
+  const [currentValue, setCurrentValue] = useState("");
+  const [showIncorrectMessage, setShowIncorrectMessage] = useState(false);
+
   const formik = useFormik({
     initialValues: {
       guess: "",
@@ -31,21 +34,31 @@ const AnswerField: React.FC = () => {
     validationSchema: Yup.object({
       guess: Yup.number().required("Required").typeError("Must be a number"),
     }),
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       const userGuess = Number(values.guess);
       dispatch(addUserGuess(userGuess));
 
       // Increment correct answers if the guess is correct
       if (userGuess === correctSum) {
         increaseCorrectAnswers();
+      } else {
+        // Increment incorrect answers if the guess is incorrect
+        increaseIncorrectAnswers();
+        setShowIncorrectMessage(true);
+        setTimeout(() => {
+          setShowIncorrectMessage(false);
+        }, 3000); // Show the message for 3 seconds
       }
 
-      // Increment incorrect answers if the guess is incorrect
-      if (userGuess !== correctSum) {
-        increaseIncorrectAnswers();
-      }
+      // Reset the form and local state
+      resetForm();
+      setCurrentValue("");
     },
   });
+
+  useEffect(() => {
+    setCurrentValue(formik.values.guess);
+  }, [formik.values.guess]);
 
   return (
     <AnimatePresence>
@@ -68,7 +81,7 @@ const AnswerField: React.FC = () => {
               name="guess"
               type="text"
               onChange={formik.handleChange}
-              value={formik.values.guess}
+              value={currentValue}
               className="px-4 py-3 border rounded-md w-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your guess"
             />
@@ -93,9 +106,11 @@ const AnswerField: React.FC = () => {
                     Correct! The sum is {correctSum}.
                   </div>
                 ) : (
-                  <div className="text-red-600 font-bold text-lg">
-                    Incorrect, the correct sum is {correctSum}.
-                  </div>
+                  showIncorrectMessage && (
+                    <div className="text-red-600 font-bold text-lg">
+                      Incorrect, please try again.
+                    </div>
+                  )
                 )}
               </motion.div>
             )}

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../../../store/hooks";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Formik, Field, Form } from "formik";
 import {
   setTimer,
@@ -30,14 +30,14 @@ const DisplayNumbers: React.FC = () => {
   const [visible, setVisible] = useState(false);
   const [allDisplayed, setAllDisplayed] = useState(false);
 
-  //reset state when numbers change
+  // Reset state when numbers change
   useEffect(() => {
     setCurrentNumberIndex(0);
     setVisible(false);
     setAllDisplayed(false);
   }, [numbers]);
 
-  //manage displaying numbers and setting allDisplayed
+  // Manage displaying numbers and setting allDisplayed
   useEffect(() => {
     if (numbers.length > 0 && currentNumberIndex < numbers.length) {
       const timer = setTimeout(() => {
@@ -52,11 +52,11 @@ const DisplayNumbers: React.FC = () => {
 
       return () => clearTimeout(timer);
     } else if (currentNumberIndex >= numbers.length && numbers.length > 0) {
-      setAllDisplayed(true); //set allDisplayed to true when all numbers are displayed
+      setAllDisplayed(true); // Set allDisplayed to true when all numbers are displayed
     }
   }, [currentNumberIndex, numbers, timerDuration]);
 
-  //dispatch when all numbers are displayed and game is active
+  // Dispatch when all numbers are displayed and game is active
   useEffect(() => {
     if (isGameActive) {
       dispatch(setAllNumbersWereDisplayed(allDisplayed));
@@ -65,7 +65,7 @@ const DisplayNumbers: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center space-y-4 mt-8">
-      {!isGameActive && ( //conditionally render based on isGameActive
+      {!isGameActive && ( // Conditionally render based on isGameActive
         <>
           <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-xs">
             <h1 className="text-lg font-semibold mb-4">
@@ -99,7 +99,7 @@ const DisplayNumbers: React.FC = () => {
                     <option value="300">300 milliseconds</option>
                     <option value="500">500 milliseconds</option>
                     <option value="800">800 milliseconds</option>
-                    <option value="1000">1 second</option>
+                    <option value="1000">1 second (default)</option>
                     <option value="2000">2 seconds (default)</option>
                     <option value="3000">3 seconds</option>
                   </Field>
@@ -109,7 +109,9 @@ const DisplayNumbers: React.FC = () => {
           </div>
 
           <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-xs">
-            <h1 className="text-lg font-semibold mb-4">Set array length</h1>
+            <h1 className="text-lg font-semibold mb-4">
+              How many numbers to show
+            </h1>
             <Formik
               initialValues={{ arrayLength: arrayLengthState }}
               onSubmit={(values) => {
@@ -182,18 +184,20 @@ const DisplayNumbers: React.FC = () => {
         </>
       )}
 
-      {visible && currentNumberIndex < numbers.length && (
-        <motion.div
-          key={currentNumberIndex}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0 }}
-          className="text-4xl font-semibold"
-        >
-          {numbers[currentNumberIndex]}
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {visible && currentNumberIndex < numbers.length && (
+          <motion.div
+            key={currentNumberIndex}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: timerDuration / 1000 / 2 }}
+            className="text-4xl font-semibold flex items-center justify-center w-24 h-24 rounded-full bg-blue-400"
+          >
+            {numbers[currentNumberIndex]}
+          </motion.div>
+        )}
+      </AnimatePresence>
       {isGameActive && allDisplayed && (
         <div className="mt-4">
           <h2 className="text-lg font-semibold">

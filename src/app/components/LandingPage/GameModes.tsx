@@ -37,7 +37,7 @@ const GameModes = () => {
             numbers will appear and disappear at a set speed, challenging your
             quick calculation skills.
           </p>
-          <Link href="/game-below-one">
+          <Link href="/game-over-one">
             <button className="bg-blue-500 text-white py-2 px-4 rounded">
               Play Now
             </button>

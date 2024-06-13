@@ -133,7 +133,7 @@ const Header = () => {
             </div>
             <Link
               className="font-medium text-gray-600 hover:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500"
-              href="/"
+              href="/contact"
             >
               Contact
             </Link>
