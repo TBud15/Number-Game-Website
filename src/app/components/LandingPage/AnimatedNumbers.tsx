@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const AnimatedNumbers = () => {
   return (
-    <div className="flex flex-col items-center justify-center p-4 mb-20">
+    <div className="flex flex-col items-center justify-center p-4">
       <motion.h1
         className="text-6xl font-bold mb-8 text-center text-white pt-20"
         initial={{ opacity: 0, y: -50 }}

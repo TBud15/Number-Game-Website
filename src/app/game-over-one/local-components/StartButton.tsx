@@ -6,13 +6,20 @@ import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import {
   resetGame,
   startGame,
-} from "../../../../store/slices/guessNumberSumBelowOne";
+} from "../../../../store/slices/guessNumberSumOverOne";
 
 const StartButton: React.FC = () => {
   const dispatch = useAppDispatch();
   const isGameStarted = useAppSelector(
-    (state) => state.gameBelowOne.gameButtonClicked
+    (state) => state.gameOverOne.gameButtonClicked
   );
+
+  useEffect(() => {
+    //reset game when component unmounts
+    return () => {
+      dispatch(resetGame());
+    };
+  }, [dispatch]);
 
   return (
     <div className="flex flex-col items-center my-4">
@@ -31,7 +38,7 @@ const StartButton: React.FC = () => {
           Reset Game
         </button>
       )}
-      <Link href="game-below-one/statistics" className="mt-6">
+      <Link href="game-over-one/statistics" className="mt-6">
         <p>Go to your statistics</p>
       </Link>
     </div>

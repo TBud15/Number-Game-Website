@@ -1,7 +1,9 @@
+import ContactForm from "./local-components/Contact-Form";
+
 export default function Page() {
   return (
-    <div>
-      <p>Contact us page</p>
-    </div>
+    <section>
+      <ContactForm />
+    </section>
   );
 }

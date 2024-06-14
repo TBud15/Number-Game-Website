@@ -93,7 +93,7 @@ const Header = () => {
                 className="font-medium text-gray-600 hover:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500 inline-flex items-center"
                 onClick={toggleGameDropdown}
               >
-                Game
+                Games
                 <svg
                   className="w-4 h-4 ml-1"
                   xmlns="http://www.w3.org/2000/svg"
@@ -119,14 +119,14 @@ const Header = () => {
                       setIsGameDropdownOpen(false);
                     }}
                   >
-                    Game over one
+                    Sums over one
                   </Link>
                   <Link
                     className="block px-4 py-2 text-gray-600 hover:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700"
                     href="/game-below-one"
                     onClick={() => setIsGameDropdownOpen(false)}
                   >
-                    Game below one
+                    Sums below one
                   </Link>
                 </div>
               )}
