@@ -83,6 +83,22 @@ const ContactForm: React.FC = () => {
             name="fname"
           />
         </div>
+        {/* Email */}
+        <div>
+          <label
+            htmlFor="subject"
+            className="block mb-2 text-sm font-medium text-gray-700"
+          >
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            className="block p-3 w-full text-sm rounded-lg border shadow-sm focus:ring-primary-500 focus:border-primary-500 bg-gray-50 border-gray-300 placeholder-gray-400 text-gray-900"
+            placeholder="Enter your email"
+            name="email"
+          />
+        </div>
         {/* Subject */}
         <div>
           <label
