@@ -1,4 +1,4 @@
-import Statistics from "@/app/game-below-one/local-components/Statistics";
+import Statistics from "../local-components/Statistics";
 import Link from "next/link";
 
 const Page: React.FC = () => {
