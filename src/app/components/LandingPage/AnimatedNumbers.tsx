@@ -12,7 +12,7 @@ const AnimatedNumbers = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        Speed Math
+        Mental Math
       </motion.h1>
       <motion.p
         className="text-2xl text-gray-200 mb-8 text-center max-w-xl"

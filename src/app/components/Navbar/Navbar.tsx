@@ -16,7 +16,7 @@ const Header = () => {
   };
 
   return (
-    <header className="flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-white text-sm py-4 dark:bg-neutral-800">
+    <header className="flex flex-wrap sm:justify-start sm:flex-nowrap w-full text-sm py-4 bg-neutral-800">
       <nav
         className="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between"
         aria-label="Global"
@@ -26,7 +26,7 @@ const Header = () => {
             className="flex-none text-xl font-semibold dark:text-white"
             href="/"
           >
-            Number Game
+            Mental Math
           </Link>
           <div className="sm:hidden">
             <button
@@ -113,7 +113,7 @@ const Header = () => {
                 <div className="absolute left-0 mt-2 w-48 bg-white dark:bg-neutral-800 shadow-lg rounded-md py-2 z-10">
                   <Link
                     className="block px-4 py-2 text-gray-600 hover:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700"
-                    href="/game-over-one"
+                    href="/sums-over-one"
                     onClick={() => {
                       setIsNavCollapsed(true);
                       setIsGameDropdownOpen(false);
@@ -123,7 +123,7 @@ const Header = () => {
                   </Link>
                   <Link
                     className="block px-4 py-2 text-gray-600 hover:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700"
-                    href="/game-below-one"
+                    href="/sums-below-one"
                     onClick={() => setIsGameDropdownOpen(false)}
                   >
                     Sums below one

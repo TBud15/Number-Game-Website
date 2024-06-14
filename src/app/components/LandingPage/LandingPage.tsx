@@ -5,7 +5,7 @@ import GameModesExplanation from "./GameModesExplanation";
 
 const LandingPage = () => {
   return (
-    <div className="bg-gradient-to-r from-blue-400 to-purple-500">
+    <div className="bg-gradient-to-r from-blue-400 to-purple-500 pb-10">
       <AnimatedNumbers />
       <GameModes />
       <GameModesExplanation />

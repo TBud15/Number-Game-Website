@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const GameModesExplanation = () => {
   return (
-    <div className="p-5">
+    <div>
       <motion.div
         className="p-4 text-center bg-white bg-opacity-75 rounded-lg shadow-lg max-w-4xl mx-auto mt-6"
         initial={{ opacity: 0 }}
@@ -13,7 +13,7 @@ const GameModesExplanation = () => {
       >
         <h2 className="text-3xl font-semibold mb-4">How to Play</h2>
         <p className="text-lg mb-4">
-          In <strong>Game Mode 1</strong>, you can:
+          In <strong>Sums Over One</strong>, you can:
         </p>
         <ul className="list-disc list-inside text-left mx-auto max-w-lg">
           <li>Set a timer to control how fast numbers are displayed.</li>
@@ -26,7 +26,7 @@ const GameModesExplanation = () => {
           </li>
         </ul>
         <p className="text-lg mt-6 mb-4">
-          In <strong>Game Mode 2</strong>, the settings are the same, but the
+          In <strong>Sums Below One</strong>, the settings are the same, but the
           numbers include negative values:
         </p>
         <ul className="list-disc list-inside text-left mx-auto max-w-lg">

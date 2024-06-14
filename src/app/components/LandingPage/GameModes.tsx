@@ -19,7 +19,8 @@ const GameModes = () => {
       >
         <h1 className="text-4xl font-bold text-white mb-4">Game Modes</h1>
         <p className="text-xl text-white mb-8">
-          Choose a game mode to start playing and sharpen your math skills!
+          Choose a game mode to start playing and sharpen your mental math
+          skills!
         </p>
       </motion.div>
       <div className="flex flex-col lg:flex-row justify-around items-center w-full max-w-4xl space-y-6 lg:space-y-0 lg:space-x-6">
@@ -31,13 +32,13 @@ const GameModes = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <h2 className="text-2xl font-semibold mb-4">Game Mode 1</h2>
+          <h2 className="text-2xl font-semibold mb-4">Sums Over One</h2>
           <p className="text-md mb-4">
             Quickly calculate the sums of numbers displayed on the screen. The
             numbers will appear and disappear at a set speed, challenging your
             quick calculation skills.
           </p>
-          <Link href="/game-over-one">
+          <Link href="/sums-over-one">
             <button className="bg-blue-500 text-white py-2 px-4 rounded">
               Play Now
             </button>
@@ -52,13 +53,13 @@ const GameModes = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <h2 className="text-2xl font-semibold mb-4">Game Mode 2</h2>
+          <h2 className="text-2xl font-semibold mb-4">Sums Below One</h2>
           <p className="text-md mb-4">
             Calculate the sums of numbers, including negative values. This mode
             adds an extra layer of complexity, enhancing your calculation
             abilities under pressure.
           </p>
-          <Link href="/game-below-one">
+          <Link href="/sums-below-one">
             <button className="bg-blue-500 text-white py-2 px-4 rounded">
               Play Now
             </button>

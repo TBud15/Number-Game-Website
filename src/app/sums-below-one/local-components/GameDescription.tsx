@@ -5,7 +5,7 @@ import { useAppSelector } from "../../../../store/hooks";
 
 const GameDescription: React.FC = () => {
   const isGameActive = useAppSelector(
-    (state) => state.gameOverOne.isGameActive
+    (state) => state.gameBelowOne.isGameActive
   );
 
   const containerVariants = {
