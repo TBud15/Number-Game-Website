@@ -9,8 +9,9 @@ const ContactForm: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
 
-  const serviceID = process.env.SERVICE_ID as string;
-  const templateIDContact = process.env.TEMPLATE_ID_CONTACT as string;
+  const serviceID = process.env.NEXT_PUBLIC_SERVICE_ID as string;
+  const templateIDContact = process.env
+    .NEXT_PUBLIC_TEMPLATE_ID_CONTACT as string;
   const publicKEY = process.env.NEXT_PUBLIC_KEY_EMAILJS as string;
 
   const router = useRouter();
