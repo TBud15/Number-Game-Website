@@ -9,7 +9,13 @@ const TailwindCookieConsent = () => {
   useEffect(() => {
     const consent = localStorage.getItem("cookieConsent");
     if (consent !== "true") {
-      setShowBanner(true);
+      // Set a timeout to delay the display of the banner
+      const timer = setTimeout(() => {
+        setShowBanner(true);
+      }, 3000); // 3000 milliseconds equals 3 seconds
+
+      // Cleanup the timer when the component is unmounted
+      return () => clearTimeout(timer);
     }
   }, []);
 
