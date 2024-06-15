@@ -38,7 +38,7 @@ const StartButton: React.FC = () => {
           Reset Game
         </button>
       )}
-      <Link href="game-over-one/statistics" className="mt-6">
+      <Link href="sums-over-one/statistics" className="mt-6">
         <p>Go to your statistics</p>
       </Link>
     </div>
