@@ -11,7 +11,7 @@ const ContactForm: React.FC = () => {
 
   const serviceID = process.env.SERVICE_ID as string;
   const templateIDContact = process.env.TEMPLATE_ID_CONTACT as string;
-  const publicKEY = process.env.NEXT_PUBLIC_PUBLIC_KEY_EMAILJS as string;
+  const publicKEY = process.env.NEXT_PUBLIC_KEY_EMAILJS as string;
 
   const router = useRouter();
 
