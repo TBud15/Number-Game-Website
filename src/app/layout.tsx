@@ -5,8 +5,15 @@ import Footer from "./components/Footer/Footer";
 import Providers from "./providers"; //import the providers component
 import TailwindCookieConsent from "./components/TailwindCookieConsent/TailwindCookieConsent"; //cookies consent
 import GoogleAnalytics from "./GoogleAnalytics/GoogleAnalytics";
+import type { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  icons: {
+    icon: "/icon.png",
+  },
+};
 
 export default function RootLayout({
   children,
